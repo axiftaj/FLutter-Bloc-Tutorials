@@ -1,7 +1,8 @@
 import 'package:bloc_tutorials/bloc/counter_bloc/counter_bloc.dart';
 import 'package:bloc_tutorials/bloc/form_validation_bloc/my_form_bloc.dart';
+import 'package:bloc_tutorials/bloc/switch_bloc/switch_bloc.dart';
 import 'package:bloc_tutorials/view/counter/home_screen.dart';
-import 'package:bloc_tutorials/view/form_valiation/form_sreen.dart';
+import 'package:bloc_tutorials/view/switch_button%20/switch_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (_) => CounterBloc()),
-          BlocProvider(create: (_) => MyFormBloc())
+          BlocProvider(create: (_) => MyFormBloc()),
+          BlocProvider(create: (_) => SwitchBloc())
 
         ],
         child: MaterialApp(
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const MyForm(),
+          home:  SwitchWidget(),
         ));
   }
 }
