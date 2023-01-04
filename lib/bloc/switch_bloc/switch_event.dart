@@ -13,11 +13,21 @@ abstract class SwitchEvent extends Equatable {
 
 class EnableChange extends SwitchEvent {
   const EnableChange({required this.enable}) ;
-
   final bool enable;
 
   @override
   List<Object> get props => [enable];
+}
+
+
+
+class ProductList extends SwitchEvent {
+  const ProductList({required this.productList}) ;
+
+  final List<int> productList;
+
+  @override
+  List<Object> get props => [productList];
 }
 
 

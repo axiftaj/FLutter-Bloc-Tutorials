@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home:  SwitchWidget(),
+          home:  HomeScreen(),
         ));
   }
 }

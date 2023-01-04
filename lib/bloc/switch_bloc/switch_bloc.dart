@@ -12,7 +12,7 @@ class SwitchBloc extends Bloc<SwitchEvent , SwitchState>{
     on<EnableChange>(enable);
     on<CounterChange>(increment);
     on<SliderChange>(slider);
-
+    on<ProductList>(productList);
   }
 
   void enable(EnableChange event, Emitter<SwitchState> emit) {
@@ -23,7 +23,7 @@ class SwitchBloc extends Bloc<SwitchEvent , SwitchState>{
 
   void increment(CounterChange event, Emitter<SwitchState> emit) {
     emit(
-        state.copyWith(counter:   state.counter+1)
+        state.copyWith(counter:   event.counter)
     );
   }
 
@@ -34,5 +34,10 @@ class SwitchBloc extends Bloc<SwitchEvent , SwitchState>{
   }
 
 
+  void productList(ProductList event, Emitter<SwitchState> emit) {
+    emit(
+        state.copyWith(productList:   event.productList)
+    );
+  }
 
 }

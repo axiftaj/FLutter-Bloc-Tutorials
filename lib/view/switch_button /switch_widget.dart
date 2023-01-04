@@ -11,9 +11,13 @@ class SwitchWidget extends StatelessWidget {
    SwitchWidget({Key? key}) : super(key: key);
 
    int x = 0 ;
+   List<int> newValue = [] ;
+
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Asif Taj'),
@@ -40,15 +44,28 @@ class SwitchWidget extends StatelessWidget {
               builder: (context, state){
                 return Slider(value: state.slider, onChanged: (value){
                   context.read<SwitchBloc>().add(SliderChange(slider: value));
-
                 });
               }
+          ),
+          BlocBuilder<SwitchBloc , SwitchState>(
+              builder: (context, state){
+                return Expanded(child: ListView.builder(
+                    itemCount: state.productList.length,
+                    itemBuilder: (context,index){
+                      return Text('value'+index.toString());
+                }));
+              }
           )
+
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          context.read<SwitchBloc>().add(CounterChange(counter: 0));
+          x++;
+          newValue.add(x);
+          context.read<SwitchBloc>().add(ProductList(productList: newValue));
+
+          context.read<SwitchBloc>().add(CounterChange(counter: x));
           print('tap');
         },
         child: Icon(Icons.add),
