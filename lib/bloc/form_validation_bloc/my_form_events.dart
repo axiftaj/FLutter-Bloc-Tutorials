@@ -20,6 +20,7 @@ class EmailChanged extends MyFormEvent {
 class EmailUnfocused extends MyFormEvent {}
 
 class PasswordChanged extends MyFormEvent {
+
   const PasswordChanged({required this.password});
 
   final String password;

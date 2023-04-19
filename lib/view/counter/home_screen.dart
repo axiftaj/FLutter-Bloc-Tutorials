@@ -2,6 +2,7 @@ import 'package:bloc_tutorials/bloc/counter_bloc/counter_bloc.dart';
 import 'package:bloc_tutorials/bloc/counter_bloc/counter_events.dart';
 import 'package:bloc_tutorials/bloc/switch_bloc/switch_states.dart';
 import 'package:bloc_tutorials/view/counter/counter_screen.dart';
+import 'package:bloc_tutorials/view/todo/post_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -46,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   subtitle: Text('Simple example to change the state of switch button with boolean'),
                 ),
               ),
+
               Card(
                 child: ListTile(
                   onTap: (){
@@ -53,6 +55,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   title: Text('Switch Button Example'),
                   subtitle: Text('Simple example to change the state of switch button with boolean'),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => PostScreen()));
+                  },
+                  title: Text('Favourite Screen'),
+                  subtitle: Text('Let make favourote Item In List'),
                 ),
               ),
             ],

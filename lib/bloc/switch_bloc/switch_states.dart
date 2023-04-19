@@ -2,7 +2,7 @@
 import 'package:equatable/equatable.dart';
 
 class SwitchState extends Equatable {
-   SwitchState({
+   const SwitchState({
      this.enable  = false,
      this.counter = 0,
      this.slider = 0.0 ,
@@ -20,7 +20,6 @@ class SwitchState extends Equatable {
       counter: counter ?? this.counter,
       slider: slider ?? this.slider,
       productList: productList ?? this.productList,
-
     );
   }
   @override

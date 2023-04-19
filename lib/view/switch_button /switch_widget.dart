@@ -42,9 +42,17 @@ class SwitchWidget extends StatelessWidget {
           ),
           BlocBuilder<SwitchBloc , SwitchState>(
               builder: (context, state){
-                return Slider(value: state.slider, onChanged: (value){
-                  context.read<SwitchBloc>().add(SliderChange(slider: value));
-                });
+                return Column(
+                  children: [
+                    Container(
+                      height: 200,
+                      color:Colors.red.withOpacity(state.slider) ,
+                    ),
+                    Slider(value: state.slider, onChanged: (value){
+                      context.read<SwitchBloc>().add(SliderChange(slider: value));
+                    }),
+                  ],
+                );
               }
           ),
           BlocBuilder<SwitchBloc , SwitchState>(
@@ -52,6 +60,7 @@ class SwitchWidget extends StatelessWidget {
                 return Expanded(child: ListView.builder(
                     itemCount: state.productList.length,
                     itemBuilder: (context,index){
+
                       return Text('value'+index.toString());
                 }));
               }

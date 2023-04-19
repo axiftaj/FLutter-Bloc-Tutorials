@@ -1,6 +1,7 @@
 
 import 'package:bloc_tutorials/bloc/counter_bloc/counter_bloc.dart';
 import 'package:bloc_tutorials/bloc/counter_bloc/counter_events.dart';
+import 'package:bloc_tutorials/bloc/counter_bloc/counter_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,10 +19,17 @@ class _CounterScreenState extends State<CounterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: BlocBuilder<CounterBloc , int>(
+        child: BlocBuilder<CounterBloc , ConterState>(
           builder: (BuildContext context, state) {
-            return Center(child: Text(state.toString() ,
-              style: TextStyle(color: Colors.red , fontSize: 50),));
+            return Column(
+              children: [
+                TextButton(onPressed: (){
+              context.read<CounterBloc>().add(CounterIncrementPressed(counter: state.counter.toInt()));
+            }, child: Text('click')),
+                Center(child: Text(state.counter.toString() ,
+                  style: TextStyle(color: Colors.red , fontSize: 50),)),
+              ],
+            );
           },
         ),
       ),
@@ -29,11 +37,11 @@ class _CounterScreenState extends State<CounterScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(onPressed: (){
-            context.read<CounterBloc>().add(CounterDecrementPressed());
+            context.read<CounterBloc>().add(CounterDecrementPressed(counter: 1));
           },child: Icon(Icons.minimize),),
-          SizedBox(width: 10,),
+          const SizedBox(width: 10,),
           FloatingActionButton(onPressed: (){
-            context.read<CounterBloc>().add(CounterIncrementPressed());
+            context.read<CounterBloc>().add(CounterIncrementPressed(counter: 1));
           },child: Icon(Icons.add),)
         ],
       ),
