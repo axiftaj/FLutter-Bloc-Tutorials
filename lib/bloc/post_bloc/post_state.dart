@@ -8,30 +8,30 @@ class PostState extends Equatable {
   const PostState({
     this.status = PostStatus.initial,
     this.posts = const <PostModel>[],
-    this.hasReachedMax = false,
+    this.message = '',
   });
 
   final PostStatus status;
   final List<PostModel> posts;
-  final bool hasReachedMax;
+  final String message;
 
   PostState copyWith({
     PostStatus? status,
     List<PostModel>? posts,
-    bool? hasReachedMax,
+    String? message,
   }) {
     return PostState(
       status: status ?? this.status,
       posts: posts ?? this.posts,
-      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+      message: message ?? this.message,
     );
   }
 
   @override
   String toString() {
-    return '''PostState { status: $status, hasReachedMax: $hasReachedMax, posts: ${posts.length} }''';
+    return '''PostState { status: $status, hasReachedMax: $message, posts: ${posts.length} }''';
   }
 
   @override
-  List<Object> get props => [status, posts, hasReachedMax];
+  List<Object> get props => [status, posts, message];
 }

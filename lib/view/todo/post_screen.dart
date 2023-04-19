@@ -56,7 +56,11 @@ class _PostScreenState extends State<PostScreen> {
           builder: (context, state) {
             switch (state.status) {
               case PostStatus.failure:
-                return const Center(child: Text('failed to fetch posts'));
+                return GestureDetector(
+                    onTap: (){
+                      PostBloc()..add(PostFetched());
+                    },
+                    child:  Center(child: Text(state.message.toString())));
               case PostStatus.success:
                 if (state.posts.isEmpty) {
                   return const Center(child: Text('no posts'));
