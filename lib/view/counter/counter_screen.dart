@@ -22,28 +22,29 @@ class _CounterScreenState extends State<CounterScreen> {
         child: BlocBuilder<CounterBloc , ConterState>(
           builder: (BuildContext context, state) {
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: (){
-              context.read<CounterBloc>().add(CounterIncrementPressed(counter: state.counter.toInt()));
-            }, child: Text('click')),
                 Center(child: Text(state.counter.toString() ,
-                  style: TextStyle(color: Colors.red , fontSize: 50),)),
+                  style: const TextStyle(color: Colors.black , fontSize: 60),)),
+                const SizedBox(height: 30,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ElevatedButton(onPressed: (){
+                      context.read<CounterBloc>().add( CounterIncrementPressed(counter: state.counter));
+                    }, child: const Text('Add')),
+                    const SizedBox(width: 20,),
+                    ElevatedButton(onPressed: (){
+                      context.read<CounterBloc>().add( CounterDecrementPressed(counter: state.counter));
+                    }, child: const Text('Removed')),
+                  ],
+                )
               ],
             );
           },
         ),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(onPressed: (){
-            context.read<CounterBloc>().add(CounterDecrementPressed(counter: 1));
-          },child: Icon(Icons.minimize),),
-          const SizedBox(width: 10,),
-          FloatingActionButton(onPressed: (){
-            context.read<CounterBloc>().add(CounterIncrementPressed(counter: 1));
-          },child: Icon(Icons.add),)
-        ],
       ),
     );
   }

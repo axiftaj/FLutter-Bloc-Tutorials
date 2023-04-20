@@ -34,8 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => CounterScreen()));
                   },
-                  title: Text('Counter Example'),
-                  subtitle: Text('Simple exmaple to increment or decrement the counter'),
+                  title: const Text('Counter Example'),
+                  subtitle: const Text('Simple exmaple to increment or decrement the counter'),
                 ),
               ),
               Card(
