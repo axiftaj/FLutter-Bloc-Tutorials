@@ -50,6 +50,9 @@ class _PostScreenState extends State<PostScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Post List using bloc'),
+      ),
       body:BlocProvider(
         create: (_) => PostBloc()..add(PostFetched()),
         child: BlocBuilder<PostBloc, PostState>(
@@ -67,8 +70,12 @@ class _PostScreenState extends State<PostScreen> {
                 }
                 return ListView.builder(
                   itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      title: Text(state.posts[index].title.toString()),
+                    return Card(
+                      child: ListTile(
+                        title: Text(state.posts[index].title.toString()),
+                        subtitle: Text(state.posts[index].body.toString()),
+
+                      ),
                     );
                   },
                   itemCount: state.posts.length ,

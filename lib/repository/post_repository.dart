@@ -4,18 +4,21 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:bloc_tutorials/model/post_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart'  as http;
 class PostRepository {
 
   Future<List<PostModel>> fetchPost()async{
 
-
       try {
 
         final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts')).timeout(Duration(seconds: 10 ));
         final body = json.decode(response.body) as List;
-        print(response.statusCode.toString());
-        print(body);
+        if (kDebugMode) {
+          print(response.statusCode.toString());
+          print(body);
+
+        }
 
         if(response.statusCode == 200){
           return  body.map((dynamic json) {

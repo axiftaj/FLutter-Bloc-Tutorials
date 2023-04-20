@@ -7,3 +7,6 @@ abstract class PostEvent extends Equatable {
 }
 
 class PostFetched extends PostEvent {}
+
+
+class FetchPostWithLazyLoading extends PostEvent {}

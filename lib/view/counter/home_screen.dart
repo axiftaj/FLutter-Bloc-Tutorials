@@ -66,6 +66,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   subtitle: Text('Let make favourote Item In List'),
                 ),
               ),
+              Card(
+                child: ListTile(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => PostScreen()));
+                  },
+                  title: Text('Post'),
+                  subtitle: Text('Post with lazy loading using bloc....'),
+                ),
+              ),
             ],
           ),
         ),
