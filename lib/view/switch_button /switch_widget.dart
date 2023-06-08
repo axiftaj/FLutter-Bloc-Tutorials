@@ -22,51 +22,54 @@ class SwitchWidget extends StatelessWidget {
       appBar: AppBar(
         title: Text('Asif Taj'),
       ),
-      body: Column(
-        children: [
-          BlocBuilder<SwitchBloc , SwitchState>(
-              builder: (context, value){
-                return Column(
-                  children: [
-                    Switch(value: value.enable, onChanged: (newValue){
-                      context.read<SwitchBloc>().add(EnableChange(enable: newValue));
-                    }),
-                  ],
-                );
-              }
-          ),
-          BlocBuilder<SwitchBloc , SwitchState>(
-              builder: (context, state){
-                return Text(state.counter.toString());
-              }
-          ),
-          BlocBuilder<SwitchBloc , SwitchState>(
-              builder: (context, state){
-                return Column(
-                  children: [
-                    Container(
-                      height: 200,
-                      color:Colors.red.withOpacity(state.slider) ,
-                    ),
-                    Slider(value: state.slider, onChanged: (value){
-                      context.read<SwitchBloc>().add(SliderChange(slider: value));
-                    }),
-                  ],
-                );
-              }
-          ),
-          BlocBuilder<SwitchBloc , SwitchState>(
-              builder: (context, state){
-                return Expanded(child: ListView.builder(
-                    itemCount: state.productList.length,
-                    itemBuilder: (context,index){
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            BlocBuilder<SwitchBloc , SwitchState>(
+                builder: (context, value){
+                  return Column(
+                    children: [
+                      Switch(value: value.enable, onChanged: (newValue){
+                        context.read<SwitchBloc>().add(EnableChange(enable: newValue));
+                      }),
+                    ],
+                  );
+                }
+            ),
+            BlocBuilder<SwitchBloc , SwitchState>(
+                builder: (context, state){
+                  return Text(state.counter.toString());
+                }
+            ),
+            BlocBuilder<SwitchBloc , SwitchState>(
+                builder: (context, state){
+                  return Column(
+                    children: [
+                      Container(
+                        height: 200,
+                        color:Colors.red.withOpacity(state.slider) ,
+                      ),
+                      Slider(value: state.slider, onChanged: (value){
+                        context.read<SwitchBloc>().add(SliderChange(slider: value));
+                      }),
+                    ],
+                  );
+                }
+            ),
+            BlocBuilder<SwitchBloc , SwitchState>(
+                builder: (context, state){
+                  return Expanded(child: ListView.builder(
+                      itemCount: state.productList.length,
+                      itemBuilder: (context,index){
+                        return Text('value'+index.toString());
+                  }));
+                }
+            )
 
-                      return Text('value'+index.toString());
-                }));
-              }
-          )
-
-        ],
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){

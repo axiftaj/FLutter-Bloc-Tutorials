@@ -22,20 +22,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Block Tutorials'),
+        title: const Text('Block Tutorials'),
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: ListView(
             children: [
               Card(
                 child: ListTile(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => CounterScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const CounterScreen()));
                   },
                   title: const Text('Counter Example'),
-                  subtitle: const Text('Simple exmaple to increment or decrement the counter'),
+                  subtitle: const Text('Simple example to increment or decrement the counter'),
                 ),
               ),
               Card(
@@ -43,18 +43,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => SwitchWidget()));
                   },
-                  title: Text('Switch Button Example'),
-                  subtitle: Text('Simple example to change the state of switch button with boolean'),
+                  title: const Text('Some Bloc Example'),
+                  subtitle: const Text('Switch button, counter exmaple and slider example with container'),
                 ),
               ),
 
               Card(
                 child: ListTile(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => MyForm()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const MyForm()));
                   },
-                  title: Text('Switch Button Example'),
-                  subtitle: Text('Simple example to change the state of switch button with boolean'),
+                  title: const Text('Login Form Validation'),
+                  subtitle: const Text('Simple login form to validating using bloc '),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const PostScreen()));
+                  },
+                  title: const Text('Get Post Api with bloc'),
+                  subtitle: const Text('We will fetch the list of post using bloc'),
                 ),
               ),
               Card(
@@ -62,17 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => PostScreen()));
                   },
-                  title: Text('Favourite Screen'),
-                  subtitle: Text('Let make favourote Item In List'),
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => PostScreen()));
-                  },
-                  title: Text('Post'),
-                  subtitle: Text('Post with lazy loading using bloc....'),
+                  title: const Text('Post'),
+                  subtitle: const Text('Post with lazy loading using bloc....'),
                 ),
               ),
             ],

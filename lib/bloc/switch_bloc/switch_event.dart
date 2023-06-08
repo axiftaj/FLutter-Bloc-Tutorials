@@ -11,10 +11,16 @@ abstract class SwitchEvent extends Equatable {
 }
 
 
+class InsertItem extends SwitchEvent {
+  const InsertItem({required this.id}) ;
+  final int id;
+  @override
+  List<Object> get props => [id];
+}
+
 class EnableChange extends SwitchEvent {
   const EnableChange({required this.enable}) ;
   final bool enable;
-
   @override
   List<Object> get props => [enable];
 }

@@ -33,14 +33,12 @@ class SwitchBloc extends Bloc<SwitchEvent , SwitchState>{
     );
   }
 
-
   void addProductList(ProductList event, Emitter<SwitchState> emit) {
     emit(
         state.copyWith(productList:   event.productList ,
         )
     );
   }
-
 
 
 }

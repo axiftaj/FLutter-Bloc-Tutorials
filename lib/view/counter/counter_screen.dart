@@ -18,6 +18,9 @@ class _CounterScreenState extends State<CounterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Counter Example'),
+      ),
       body: SafeArea(
         child: BlocBuilder<CounterBloc , ConterState>(
           builder: (BuildContext context, state) {
