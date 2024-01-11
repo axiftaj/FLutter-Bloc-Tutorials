@@ -1,10 +1,7 @@
-import 'package:bloc_tutorials/bloc/counter_bloc/counter_bloc.dart';
-import 'package:bloc_tutorials/bloc/counter_bloc/counter_events.dart';
-import 'package:bloc_tutorials/bloc/switch_bloc/switch_states.dart';
+
 import 'package:bloc_tutorials/view/counter/counter_screen.dart';
 import 'package:bloc_tutorials/view/todo/post_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../form_valiation/form_sreen.dart';
 import '../switch_button /switch_widget.dart';

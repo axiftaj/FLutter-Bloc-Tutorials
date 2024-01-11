@@ -1,7 +1,4 @@
-
 import 'package:equatable/equatable.dart';
-
-
 
 abstract class SwitchEvent extends Equatable {
   const SwitchEvent();
@@ -12,6 +9,7 @@ abstract class SwitchEvent extends Equatable {
 
 
 class InsertItem extends SwitchEvent {
+
   const InsertItem({required this.id}) ;
   final int id;
   @override

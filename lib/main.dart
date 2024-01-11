@@ -1,7 +1,8 @@
 import 'package:bloc_tutorials/bloc/counter_bloc/counter_bloc.dart';
 import 'package:bloc_tutorials/bloc/form_validation_bloc/my_form_bloc.dart';
 import 'package:bloc_tutorials/bloc/switch_bloc/switch_bloc.dart';
-import 'package:bloc_tutorials/view/counter/home_screen.dart';
+import 'package:bloc_tutorials/view/counter/counter_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,13 +21,14 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => CounterBloc()),
           BlocProvider(create: (_) => MyFormBloc()),
           BlocProvider(create: (_) => SwitchBloc()),
+
         ],
         child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: HomeScreen(),
+          home: CounterScreen(),
         ));
   }
 }

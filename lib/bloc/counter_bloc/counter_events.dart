@@ -1,8 +1,6 @@
 
 import 'package:equatable/equatable.dart';
 
-
-
 abstract class CounterEvent extends Equatable {
   const CounterEvent();
 
@@ -11,18 +9,9 @@ abstract class CounterEvent extends Equatable {
 }
 
 
-class CounterIncrementPressed extends CounterEvent {
-  const CounterIncrementPressed({required this.counter}) ;
-  final int counter;
+class CounterIncrement extends CounterEvent {}
 
-  @override
-  List<Object> get props => [counter];
-}
+class CounterDecrement extends CounterEvent {}
 
-class CounterDecrementPressed extends CounterEvent {
-  const CounterDecrementPressed({required this.counter}) ;
-  final int counter;
 
-  @override
-  List<Object> get props => [counter];
-}
+class SwitchEvent extends CounterEvent {}

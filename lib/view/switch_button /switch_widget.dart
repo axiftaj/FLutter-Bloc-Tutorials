@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc_tutorials/bloc/switch_bloc/switch_bloc.dart';
 import 'package:bloc_tutorials/bloc/switch_bloc/switch_event.dart';
 import 'package:bloc_tutorials/bloc/switch_bloc/switch_states.dart';

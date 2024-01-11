@@ -17,36 +17,46 @@ class _CounterScreenState extends State<CounterScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter Example'),
       ),
       body: SafeArea(
-        child: BlocBuilder<CounterBloc , ConterState>(
-          builder: (BuildContext context, state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+        child:Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            BlocBuilder<CounterBloc , CounterState>(
+                buildWhen: (previous, current) => previous.counter != current.counter,
+                builder: (context, state){
+                  return Center(child: Text(state.counter.toString() ,
+                    style: const TextStyle(color: Colors.black , fontSize: 60),));
+                }
+            ),
+            BlocBuilder<CounterBloc , CounterState>(
+                buildWhen: (previous, current) => previous.isSwitchOn != current.isSwitchOn,
+                builder: (context, state){
+                  return Center(child: Text(state.isSwitchOn.toString() ,
+                    style: const TextStyle(color: Colors.black , fontSize: 60),));
+                }
+            ),
+            const SizedBox(height: 30,),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Center(child: Text(state.counter.toString() ,
-                  style: const TextStyle(color: Colors.black , fontSize: 60),)),
-                const SizedBox(height: 30,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ElevatedButton(onPressed: (){
-                      context.read<CounterBloc>().add( CounterIncrementPressed(counter: state.counter));
-                    }, child: const Text('Add')),
-                    const SizedBox(width: 20,),
-                    ElevatedButton(onPressed: (){
-                      context.read<CounterBloc>().add( CounterDecrementPressed(counter: state.counter));
-                    }, child: const Text('Removed')),
-                  ],
-                )
+                ElevatedButton(onPressed: (){
+                  context.read<CounterBloc>().add(CounterIncrement());
+                }, child: const Text('Add')),
+                const SizedBox(width: 20,),
+                ElevatedButton(onPressed: (){
+                  context.read<CounterBloc>().add( SwitchEvent());
+                  context.read<CounterBloc>().add( CounterDecrement());
+                }, child: const Text('Removed')),
               ],
-            );
-          },
+            )
+          ],
         ),
       ),
     );
