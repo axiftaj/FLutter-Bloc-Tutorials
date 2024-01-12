@@ -9,9 +9,8 @@ abstract class CounterEvent extends Equatable {
 }
 
 
-class CounterIncrement extends CounterEvent {}
+class IncrementCounter extends CounterEvent {}
 
-class CounterDecrement extends CounterEvent {}
-
+class DecrementCounter extends CounterEvent {}
 
 class SwitchEvent extends CounterEvent {}
