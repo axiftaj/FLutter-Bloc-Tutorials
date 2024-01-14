@@ -56,15 +56,7 @@ class SwitchWidget extends StatelessWidget {
                   );
                 }
             ),
-            BlocBuilder<SwitchBloc , SwitchState>(
-                builder: (context, state){
-                  return Expanded(child: ListView.builder(
-                      itemCount: state.productList.length,
-                      itemBuilder: (context,index){
-                        return Text('value'+index.toString());
-                  }));
-                }
-            )
+
 
           ],
         ),
@@ -76,9 +68,8 @@ class SwitchWidget extends StatelessWidget {
           context.read<SwitchBloc>().add(ProductList(productList: newValue));
 
           context.read<SwitchBloc>().add(CounterChange(counter: x));
-          print('tap');
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

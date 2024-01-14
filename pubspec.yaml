@@ -39,6 +39,7 @@ dependencies:
   formz: ^0.4.0
   bloc:
   very_good_analysis: ^3.0.1
+  image_picker:
   flutter_hooks: ^0.18.6
   http:
 

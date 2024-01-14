@@ -32,13 +32,13 @@ class _CounterScreenState extends State<CounterScreen> {
                     style: const TextStyle(color: Colors.black , fontSize: 60),));
                 }
             ),
-            // BlocBuilder<CounterBloc , CounterState>(
-            //     buildWhen: (previous, current) => previous.isSwitchOn != current.isSwitchOn,
-            //     builder: (context, state){
-            //       return Center(child: Text(state.isSwitchOn.toString() ,
-            //         style: const TextStyle(color: Colors.black , fontSize: 60),));
-            //     }
-            // ),
+            BlocBuilder<CounterBloc , CounterState>(
+                buildWhen: (previous, current) => previous.isSwitchOn != current.isSwitchOn,
+                builder: (context, state){
+                  return Center(child: Text(state.isSwitchOn.toString() ,
+                    style: const TextStyle(color: Colors.black , fontSize: 60),));
+                }
+            ),
             const SizedBox(height: 30,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
