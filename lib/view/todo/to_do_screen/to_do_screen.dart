@@ -33,55 +33,26 @@ class _ToDoScreenState extends State<ToDoScreen> {
                   trailing: IconButton(
                     icon: const Icon(Icons.delete),
                     onPressed: () {
-                      BlocProvider.of<ToDoBloc>(context)
-                          .add(RemoveTodoEvent(index));
+                      BlocProvider.of<ToDoBloc>(context).add(RemoveTodoEvent(state.todos[index]));
                     },
                   ),
                 );
               },
             );
           } else {
-            return Center(
+            return const Center(
               child: Text('Unknown state.'),
             );
           }
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-
-          BlocProvider.of<ToDoBloc>(context).add(AddTodoEvent('hello'));
-          // String task = await showDialog(
-          //   context: context,
-          //   builder: (BuildContext context) {
-          //     return AlertDialog(
-          //       title: Text('Add Todo'),
-          //       content: TextField(
-          //         onChanged: (value) {},
-          //       ),
-          //       actions: [
-          //         TextButton(
-          //           onPressed: () {
-          //             Navigator.pop(context);
-          //           },
-          //           child: Text('Cancel'),
-          //         ),
-          //         TextButton(
-          //           onPressed: () {
-          //             Navigator.pop(context, "Task added!");
-          //           },
-          //           child: Text('Add'),
-          //         ),
-          //       ],
-          //     );
-          //   },
-          // );
-          //
-          // if (task != null && task.isNotEmpty) {
-          //
-          // }
+        onPressed: ()  {
+          for(int i = 0 ; i < 10 ; i++ ){
+            BlocProvider.of<ToDoBloc>(context).add(AddTodoEvent('Task $i'));
+          }
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

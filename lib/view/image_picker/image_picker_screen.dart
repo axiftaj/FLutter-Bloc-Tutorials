@@ -14,6 +14,7 @@ class ImagePickerScreen extends StatefulWidget {
 }
 
 class _ImagePickerScreenState extends State<ImagePickerScreen> {
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -22,7 +23,7 @@ class _ImagePickerScreenState extends State<ImagePickerScreen> {
             builder: (context, state){
               return state.file == null ? InkWell(
                 onTap: (){
-                  context.read<ImagePickerBloc>().add(CameraCapture());
+                  context.read<ImagePickerBloc>().add(GalleryPicker());
                 },
                 child: const CircleAvatar(
                   radius: 20,

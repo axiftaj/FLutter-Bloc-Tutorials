@@ -20,7 +20,7 @@ class ToDoBloc extends Bloc<ToDoEvent, ToDoState> {
   }
 
   void _removeEvent(RemoveTodoEvent event, Emitter<ToDoState> emit){
-    todos.removeAt(event.index);
+    todos.remove(event.index);
     emit(state.copyWith(todos: List.from(todos)  ));
   }
   

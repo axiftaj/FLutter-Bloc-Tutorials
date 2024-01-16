@@ -1,6 +1,3 @@
-
-
-
 import 'package:equatable/equatable.dart';
 
 abstract class ToDoEvent extends Equatable {
@@ -17,9 +14,8 @@ class AddTodoEvent extends ToDoEvent {
 }
 
 class RemoveTodoEvent extends ToDoEvent {
-  final int index;
-
-  RemoveTodoEvent(this.index);
+  final Object index;
+  const RemoveTodoEvent(this.index);
 
   @override
   List<Object?> get props => [index];
