@@ -1,6 +1,3 @@
-
-
-import 'package:bloc_tutorials/bloc/image_picker/image_picker_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickerUtils {

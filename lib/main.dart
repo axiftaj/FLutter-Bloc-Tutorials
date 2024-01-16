@@ -1,9 +1,13 @@
 import 'package:bloc_tutorials/Utils/image_picker_utils.dart';
 import 'package:bloc_tutorials/bloc/counter_bloc/counter_bloc.dart';
+import 'package:bloc_tutorials/bloc/favourite/favourite_bloc.dart';
+import 'package:bloc_tutorials/bloc/favourite/favourite_event.dart';
 import 'package:bloc_tutorials/bloc/form_validation_bloc/my_form_bloc.dart';
 import 'package:bloc_tutorials/bloc/image_picker/image_picker_bloc.dart';
 import 'package:bloc_tutorials/bloc/switch_bloc/switch_bloc.dart';
+import 'package:bloc_tutorials/repository/favourite_reposiotry.dart';
 import 'package:bloc_tutorials/view/counter/counter_screen.dart';
+import 'package:bloc_tutorials/view/favourite/favourite_screen.dart';
 import 'package:bloc_tutorials/view/image_picker/image_picker_screen.dart';
 import 'package:bloc_tutorials/view/switch_button%20/switch_widget.dart';
 import 'package:bloc_tutorials/view/todo/to_do_screen/to_do_screen.dart';
@@ -31,6 +35,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => SwitchBloc()),
           BlocProvider(create: (_) => ToDoBloc()),
           BlocProvider(create: (_) => ImagePickerBloc(ImagePickerUtils())),
+          BlocProvider(create: (_) => FavouriteBloc(FavouriteRepository())..add(FetchFavouriteList())),
 
         ],
         child: MaterialApp(
@@ -38,7 +43,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home:  ToDoScreen(),
+          home:  FavouriteScreen(),
         ));
   }
 }
