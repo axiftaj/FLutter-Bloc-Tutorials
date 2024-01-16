@@ -8,14 +8,27 @@ import '../../repository/favourite_reposiotry.dart';
 class FavouriteBloc extends Bloc<FavouriteEvent, FavouriteState> {
 
   List<FavouriteItemModel> favouriteList = [];
+  List<FavouriteItemModel> tempFavouriteList = [];
+
   FavouriteRepository favouriteRepository ;
 
   FavouriteBloc(this.favouriteRepository) : super(const FavouriteState()) {
     on<FetchFavouriteList>(fetchFavouriteList);
     on<FavouriteItem>(_fetchFavouriteList);
     on<DeleteItem>(deleteItem);
-
+    on<SelectItem>(selectedItem);
+    on<UnSelectItem>(unSelectItem);
   }
+
+  void selectedItem(SelectItem events , Emitter<FavouriteState> emit)async{
+    tempFavouriteList.add(events.item);
+    emit(state.copyWith(tempFavouriteList: List.from(tempFavouriteList)));
+  }
+  void unSelectItem(UnSelectItem events , Emitter<FavouriteState> emit)async{
+    tempFavouriteList.remove(events.item);
+    emit(state.copyWith(tempFavouriteList: List.from(tempFavouriteList)));
+  }
+
 
   void fetchFavouriteList(FetchFavouriteList events , Emitter<FavouriteState> emit)async{
     favouriteList = await favouriteRepository.fetchItems();
@@ -27,7 +40,6 @@ class FavouriteBloc extends Bloc<FavouriteEvent, FavouriteState> {
   }
 
   void _fetchFavouriteList(FavouriteItem events , Emitter<FavouriteState> emit)async{
-
     final personIndex = favouriteList.indexWhere((person) => person.id == events.item.id);
     favouriteList[personIndex] = events.item;
     emit(state.copyWith(favouriteList: List.from(favouriteList)));
