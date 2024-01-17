@@ -1,7 +1,6 @@
-
 import 'package:equatable/equatable.dart';
-
 import '../../model/favoruite/favourite_item_model.dart';
+
 enum ListStatus { loading, success, failure }
 
 class FavouriteState extends Equatable{

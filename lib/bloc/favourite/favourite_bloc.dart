@@ -58,11 +58,16 @@ class FavouriteBloc extends Bloc<FavouriteEvent, FavouriteState> {
   }
 
   void deleteItem(DeleteItem events , Emitter<FavouriteState> emit)async{
-    favouriteList.remove(events.object);
+
+    for(int i = 0 ; i< tempFavouriteList.length ; i++){
+      favouriteList.remove(tempFavouriteList[i]);
+    }
+
+    tempFavouriteList.clear();
     emit(
         state.copyWith(
             favouriteList: List.from(favouriteList),
-            listStatus: ListStatus.success ,
+            tempFavouriteList: List.from(tempFavouriteList),
         ));
   }
 }

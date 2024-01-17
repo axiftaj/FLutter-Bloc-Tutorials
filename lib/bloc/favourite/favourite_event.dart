@@ -31,6 +31,4 @@ class UnSelectItem extends FavouriteEvent {
 }
 
 class DeleteItem extends FavouriteEvent {
-  Object object ;
-  DeleteItem({required this.object}) ;
 }
