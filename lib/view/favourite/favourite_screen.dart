@@ -1,5 +1,6 @@
 import 'package:bloc_tutorials/bloc/favourite/favourite_bloc.dart';
 import 'package:bloc_tutorials/bloc/favourite/favourite_state.dart';
+import 'package:bloc_tutorials/view/favourite/widget/delete_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,24 +19,8 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Favourite App'),
-        actions: [
-
-          BlocBuilder<FavouriteBloc, FavouriteState>(
-            buildWhen: (previous, current) =>  previous.tempFavouriteList != current.tempFavouriteList,
-            builder: (context, state) {
-              return Visibility(
-                  visible: state.tempFavouriteList.isNotEmpty ?  true : false ,
-                  child: IconButton(onPressed: () {
-                    for(int i = 0; i < state.tempFavouriteList.length ; i++){
-                      context.read<FavouriteBloc>().add(DeleteItem(object: state.tempFavouriteList[i]));
-                      context.read<FavouriteBloc>().add(UnSelectItem(item: state.tempFavouriteList[i]));
-                    }
-
-                    },
-                      icon: const Icon(Icons.delete_outline))
-              );
-            },
-          )
+        actions: const [
+          DeleteButtonWidget()
         ],
       ),
       body: Padding(
@@ -69,6 +54,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                           trailing: IconButton(
                             onPressed: () {
                               FavouriteItemModel item = state.favouriteList[index];
+
                               context.read<FavouriteBloc>().add(FavouriteItem(
                                   item: FavouriteItemModel(
                                       id: item.id, isFavourite: item.isFavourite ? false : true,
