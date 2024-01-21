@@ -8,7 +8,6 @@ import 'package:bloc_tutorials/repository/post_repository.dart';
 class PostBloc extends Bloc<PostEvent , PostState> {
   PostRepository postRepository  = PostRepository();
 
-
   PostBloc() :super(const PostState()){
     on<PostFetched>(fetchPostApi);
   }

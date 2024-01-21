@@ -8,9 +8,8 @@ import 'package:bloc_tutorials/bloc/switch_bloc/switch_bloc.dart';
 import 'package:bloc_tutorials/repository/favourite_reposiotry.dart';
 import 'package:bloc_tutorials/view/counter/counter_screen.dart';
 import 'package:bloc_tutorials/view/favourite/favourite_screen.dart';
-import 'package:bloc_tutorials/view/image_picker/image_picker_screen.dart';
 import 'package:bloc_tutorials/view/switch_button%20/switch_widget.dart';
-import 'package:bloc_tutorials/view/todo/to_do_screen/to_do_screen.dart';
+import 'package:bloc_tutorials/view/todo/post_screen.dart';
 
 
 import 'package:flutter/material.dart';
@@ -40,12 +39,10 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           title: 'Flutter Demo',
-          themeMode: ThemeMode.dark,
           theme: ThemeData(
-            brightness: Brightness.dark,
             primarySwatch: Colors.blue,
           ),
-          home:  FavouriteScreen(),
+          home:  SwitchWidget(),
         ));
   }
 }

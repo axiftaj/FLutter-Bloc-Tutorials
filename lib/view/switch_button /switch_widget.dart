@@ -6,71 +6,60 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class SwitchWidget extends StatelessWidget {
-   SwitchWidget({Key? key}) : super(key: key);
-
-   int x = 0 ;
-   List<int> newValue = [] ;
+   const SwitchWidget({Key? key}) : super(key: key);
 
 
-  @override
-  Widget build(BuildContext context) {
+   @override
+   Widget build(BuildContext context) {
+     return Scaffold(
+       appBar: AppBar(
+         title: const Text('Exmaple Two'),
+       ),
+       body: Padding(
+         padding: const EdgeInsets.symmetric(horizontal: 20),
+         child: Column(
+           crossAxisAlignment: CrossAxisAlignment.center,
+           mainAxisAlignment: MainAxisAlignment.center,
+           children: [
+             Row(
+               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               children: [
+                 const Text('Notifications') ,
+                 BlocBuilder<SwitchBloc , SwitchStates>(
+                     buildWhen: (previous, current) => previous.isSwitch != current.isSwitch,
+                     builder: (context, state){
+                       return Switch(value: state.isSwitch, onChanged: (newValue){
+                         context.read<SwitchBloc>().add(EnableOrDisableNotification());
+                       });
+                     }
+                 )
+               ],
+             ),
+             const SizedBox(height: 30,),
+             BlocBuilder<SwitchBloc , SwitchStates>(
+                 buildWhen: (previous, current) => previous.slider != current.slider,
+                 builder: (context, state){
+                   return  Container(
+                     height: 200,
+                     color:Colors.red.withOpacity(state.slider) ,
+                   );
+
+                 }
+             )
+             ,
+             const SizedBox(height: 50,),
+             BlocBuilder<SwitchBloc , SwitchStates>(
+                 builder: (context, state){
+                   return Slider(value: state.slider, onChanged: (value){
+                     context.read<SwitchBloc>().add(SliderEvent(slider: value));
+                   });
+                 }
+             )
 
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Asif Taj'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            BlocBuilder<SwitchBloc , SwitchState>(
-                builder: (context, value){
-                  return Column(
-                    children: [
-                      Switch(value: value.enable, onChanged: (newValue){
-                        context.read<SwitchBloc>().add(EnableChange(enable: newValue));
-                      }),
-                    ],
-                  );
-                }
-            ),
-            BlocBuilder<SwitchBloc , SwitchState>(
-                builder: (context, state){
-                  return Text(state.counter.toString());
-                }
-            ),
-            BlocBuilder<SwitchBloc , SwitchState>(
-                builder: (context, state){
-                  return Column(
-                    children: [
-                      Container(
-                        height: 200,
-                        color:Colors.red.withOpacity(state.slider) ,
-                      ),
-                      Slider(value: state.slider, onChanged: (value){
-                        context.read<SwitchBloc>().add(SliderChange(slider: value));
-                      }),
-                    ],
-                  );
-                }
-            ),
-
-
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          x++;
-          newValue.add(x);
-          context.read<SwitchBloc>().add(ProductList(productList: newValue));
-
-          context.read<SwitchBloc>().add(CounterChange(counter: x));
-        },
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
+           ],
+         ),
+       ),
+     );
+   }
 }
