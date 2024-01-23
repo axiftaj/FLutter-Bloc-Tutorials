@@ -22,17 +22,17 @@ class PostState extends Equatable {
 
   PostState copyWith({
     PostStatus? status,
-    List<PostModel>? posts,
+    List<PostModel>? postsList,
     String? message,
     String? searchMessage,
-    List<PostModel>? searchPostList
+    List<PostModel>? tempSearchPostList
   }) {
     return PostState(
       status: status ?? this.status,
-      posts: posts ?? this.posts,
+      posts: postsList ?? this.posts,
       message: message ?? this.message,
       searchMessage: searchMessage ?? this.searchMessage,
-      searchPostList: searchPostList ?? this.searchPostList,
+      searchPostList: tempSearchPostList ?? this.searchPostList,
     );
   }
 

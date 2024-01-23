@@ -113,6 +113,7 @@ class _PostScreenState extends State<PostScreen> {
         ) ,
       ),
     );
+
     return Scaffold(
       body: SafeArea(
         child: Center(

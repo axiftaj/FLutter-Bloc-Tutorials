@@ -22,7 +22,7 @@ class PostBloc extends Bloc<PostEvent , PostState> {
       emit(
           state.copyWith(
               status: PostStatus.success ,
-              posts: value ,
+              postsList: value ,
               message: 'success'
           )
       );
@@ -39,14 +39,14 @@ class PostBloc extends Bloc<PostEvent , PostState> {
   void _searchItem(SearchItem event, Emitter<PostState> emit) {
 
     if(event.stSearch.isEmpty){
-      emit(state.copyWith(searchPostList: [] , searchMessage: ''));
+      emit(state.copyWith(tempSearchPostList: [] , searchMessage: ''));
     }else {
-      tempPostList = state.posts.where((map)=>map.userId.toString() == event.stSearch).toList();
-      print(tempPostList.length);
+      tempPostList = state.posts.where((element) =>  element.title.toString().toLowerCase().toString().contains(event.stSearch.toString().toLowerCase())).toList();
+      // tempPostList = state.posts.where((map)=>map.userId.toString() == event.stSearch).toList();
       if(tempPostList.isEmpty){
-        emit(state.copyWith(searchPostList: tempPostList , searchMessage: 'No data found'));
+        emit(state.copyWith(tempSearchPostList: tempPostList , searchMessage: 'No data found'));
       }else {
-        emit(state.copyWith(searchPostList: tempPostList ));
+        emit(state.copyWith(tempSearchPostList: tempPostList  ));
       }
     }
 
