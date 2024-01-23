@@ -22,6 +22,7 @@ class PostRepository {
           return  body.map((dynamic json) {
             final map = json as Map<String, dynamic>;
             return  PostModel(
+              userId: map['userId'] as int,
               id: map['id'] as int,
               title: map['title'] as String,
               body: map['body'] as String,

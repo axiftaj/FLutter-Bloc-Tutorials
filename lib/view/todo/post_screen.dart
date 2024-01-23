@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:math' as math show Random;
 
+
 class PostScreen extends StatefulWidget {
   const PostScreen({Key? key}) : super(key: key);
 
@@ -61,24 +62,49 @@ class _PostScreenState extends State<PostScreen> {
               case PostStatus.failure:
                 return GestureDetector(
                     onTap: (){
-                      PostBloc()..add(PostFetched());
+                      context.read<PostBloc>().add(PostFetched());
                     },
                     child:  Center(child: Text(state.message.toString())));
               case PostStatus.success:
                 if (state.posts.isEmpty) {
                   return const Center(child: Text('no posts'));
                 }
-                return ListView.builder(
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      child: ListTile(
-                        title: Text(state.posts[index].title.toString()),
-                        subtitle: Text(state.posts[index].body.toString()),
-
+                return Column(
+                  children: [
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        hintText: 'Search by id',
+                        border: OutlineInputBorder()
                       ),
-                    );
-                  },
-                  itemCount: state.posts.length ,
+                      onChanged: (value){
+                        context.read<PostBloc>().add(SearchItem(value));
+                      },
+                    ),
+                    Expanded(
+                      child: state.searchMessage.isNotEmpty ?
+                      Center(child: Text(state.searchMessage.toString())) :
+                      ListView.builder(
+                        itemCount: state.searchPostList.isEmpty ?  state.posts.length : state.searchPostList.length ,
+                        itemBuilder: (BuildContext context, int index) {
+                          if(state.searchPostList.isNotEmpty){
+                            return Card(
+                              child: ListTile(
+                                title: Text(state.searchPostList[index].title.toString()),
+                                subtitle: Text(state.searchPostList[index].body.toString()),
+                              ),
+                            );
+                          }else {
+                            return Card(
+                              child: ListTile(
+                                title: Text(state.posts[index].title.toString()),
+                                subtitle: Text(state.posts[index].body.toString()),
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                    ),
+                  ],
                 );
               case PostStatus.initial:
                 return const Center(child: CircularProgressIndicator());
