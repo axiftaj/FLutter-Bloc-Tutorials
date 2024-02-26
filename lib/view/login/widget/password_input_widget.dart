@@ -1,6 +1,7 @@
+import 'package:bloc_tutorials/bloc/login_bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../bloc/form_validation_bloc/my_form_bloc.dart';
+
 
 class PasswordInput extends StatelessWidget {
   const PasswordInput({super.key, required this.focusNode});
@@ -9,7 +10,7 @@ class PasswordInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MyFormBloc, MyFormState>(
+    return BlocBuilder<LoginBloc, LoginStates>(
       builder: (context, state) {
         return TextFormField(
           initialValue: state.password.value,
@@ -27,7 +28,7 @@ class PasswordInput extends StatelessWidget {
           ),
           obscureText: true,
           onChanged: (value) {
-            context.read<MyFormBloc>().add(PasswordChanged(password: value));
+            context.read<LoginBloc>().add(PasswordChanged(password: value));
           },
           textInputAction: TextInputAction.done,
         );

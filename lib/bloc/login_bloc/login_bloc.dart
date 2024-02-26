@@ -4,13 +4,13 @@ import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import '../../model/form_validation_model/email.dart';
 import '../../model/form_validation_model/password.dart';
-part 'my_form_events.dart';
-part 'my_form_states.dart';
+part 'login_events.dart';
+part 'login_states.dart';
 
 
 
-class MyFormBloc extends Bloc<MyFormEvent, MyFormState> {
-  MyFormBloc() : super(const MyFormState()) {
+class LoginBloc extends Bloc<LoginEvents, LoginStates> {
+  LoginBloc() : super(const LoginStates()) {
     on<EmailChanged>(_onEmailChanged);
     on<PasswordChanged>(_onPasswordChanged);
     on<EmailUnfocused>(_onEmailUnfocused);
@@ -18,7 +18,7 @@ class MyFormBloc extends Bloc<MyFormEvent, MyFormState> {
     on<FormSubmitted>(_onFormSubmitted);
   }
 
-  void _onEmailChanged(EmailChanged event, Emitter<MyFormState> emit) {
+  void _onEmailChanged(EmailChanged event, Emitter<LoginStates> emit) {
     final email = Email.dirty(event.email);
     emit(
       state.copyWith(
@@ -29,7 +29,7 @@ class MyFormBloc extends Bloc<MyFormEvent, MyFormState> {
     );
   }
 
-  void _onPasswordChanged(PasswordChanged event, Emitter<MyFormState> emit) {
+  void _onPasswordChanged(PasswordChanged event, Emitter<LoginStates> emit) {
     final password = Password.dirty(event.password);
     emit(
       state.copyWith(
@@ -40,7 +40,7 @@ class MyFormBloc extends Bloc<MyFormEvent, MyFormState> {
     );
   }
 
-  void _onEmailUnfocused(EmailUnfocused event, Emitter<MyFormState> emit) {
+  void _onEmailUnfocused(EmailUnfocused event, Emitter<LoginStates> emit) {
     final email = Email.dirty(state.email.value);
     emit(
       state.copyWith(
@@ -53,7 +53,7 @@ class MyFormBloc extends Bloc<MyFormEvent, MyFormState> {
 
   void _onPasswordUnfocused(
       PasswordUnfocused event,
-      Emitter<MyFormState> emit,
+      Emitter<LoginStates> emit,
       ) {
     final password = Password.dirty(state.password.value);
     emit(
@@ -67,7 +67,7 @@ class MyFormBloc extends Bloc<MyFormEvent, MyFormState> {
 
   Future<void> _onFormSubmitted(
       FormSubmitted event,
-      Emitter<MyFormState> emit,
+      Emitter<LoginStates> emit,
       ) async {
     final email = Email.dirty(state.email.value);
     final password = Password.dirty(state.password.value);
@@ -81,7 +81,7 @@ class MyFormBloc extends Bloc<MyFormEvent, MyFormState> {
     );
     if (state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
-      await Future<void>.delayed(const Duration(seconds: 1));
+      await Future<void>.delayed(const Duration(seconds: 2));
       emit(state.copyWith(status: FormzSubmissionStatus.success));
     }
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../bloc/form_validation_bloc/my_form_bloc.dart';
+
+import '../../../bloc/login_bloc/login_bloc.dart';
 
 
 class EmailInput extends StatelessWidget {
@@ -10,7 +11,7 @@ class EmailInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MyFormBloc, MyFormState>(
+    return BlocBuilder<LoginBloc, LoginStates>(
       builder: (context, state) {
         return TextFormField(
           initialValue: state.email.value,
@@ -25,7 +26,7 @@ class EmailInput extends StatelessWidget {
           ),
           keyboardType: TextInputType.emailAddress,
           onChanged: (value) {
-            context.read<MyFormBloc>().add(EmailChanged(email: value));
+            context.read<LoginBloc>().add(EmailChanged(email: value));
           },
           textInputAction: TextInputAction.next,
         );

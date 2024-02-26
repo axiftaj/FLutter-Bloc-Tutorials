@@ -1,9 +1,11 @@
 
 import 'package:bloc_tutorials/view/counter/counter_screen.dart';
+import 'package:bloc_tutorials/view/favourite/favourite_screen.dart';
+import 'package:bloc_tutorials/view/image_picker/image_picker_screen.dart';
+import 'package:bloc_tutorials/view/login/login_sreen.dart';
 import 'package:bloc_tutorials/view/todo/post_screen.dart';
+import 'package:bloc_tutorials/view/todo/to_do_screen/to_do_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../form_valiation/form_sreen.dart';
 import '../switch_button /switch_widget.dart';
 
 
@@ -31,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const CounterScreen()));
                   },
-                  title: const Text('Counter Example'),
+                  title: const Text('Counter App'),
                   subtitle: const Text('Simple example to increment or decrement the counter'),
                 ),
               ),
@@ -44,14 +46,42 @@ class _HomeScreenState extends State<HomeScreen> {
                   subtitle: const Text('Switch button, counter exmaple and slider example with container'),
                 ),
               ),
-
               Card(
                 child: ListTile(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const MyForm()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => FavouriteScreen()));
                   },
-                  title: const Text('Login Form Validation'),
-                  subtitle: const Text('Simple login form to validating using bloc '),
+                  title: const Text('Favourite App'),
+                  subtitle: const Text('Favourite App'),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ImagePickerScreen()));
+                  },
+                  title: const Text('Image Picker Example'),
+                  subtitle: const Text('Pick Image from gallery or capture image with camera'),
+
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const ToDoScreen()));
+                  },
+                  title: const Text('To Do App'),
+                  subtitle: const Text('CRUD operations on list'),
+
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+                  },
+                  title: const Text('Login'),
+                  subtitle: const Text('Login with rest api with form validation using bloc '),
                 ),
               ),
               Card(
@@ -61,15 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   title: const Text('Get Post Api with bloc'),
                   subtitle: const Text('We will fetch the list of post using bloc'),
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => PostScreen()));
-                  },
-                  title: const Text('Post'),
-                  subtitle: const Text('Post with lazy loading using bloc....'),
                 ),
               ),
             ],

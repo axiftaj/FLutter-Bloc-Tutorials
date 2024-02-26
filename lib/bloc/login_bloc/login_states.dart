@@ -1,8 +1,8 @@
-part of 'my_form_bloc.dart';
+part of 'login_bloc.dart';
 
 
-class MyFormState extends Equatable {
- const MyFormState({
+class LoginStates extends Equatable {
+ const LoginStates({
   this.email = const Email.pure(),
   this.password = const Password.pure(),
   this.isValid = false,
@@ -14,13 +14,13 @@ class MyFormState extends Equatable {
  final bool isValid;
  final FormzSubmissionStatus status;
 
- MyFormState copyWith({
+ LoginStates copyWith({
   Email? email,
   Password? password,
   bool? isValid,
   FormzSubmissionStatus? status,
  }) {
-  return MyFormState(
+  return LoginStates(
    email: email ?? this.email,
    password: password ?? this.password,
    isValid: isValid ?? this.isValid,

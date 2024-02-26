@@ -1,18 +1,18 @@
-import 'package:bloc_tutorials/bloc/form_validation_bloc/my_form_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import '../../bloc/login_bloc/login_bloc.dart';
 import 'widget/widgets.dart';
 
 
-class MyForm extends StatefulWidget {
-  const MyForm({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<MyForm> createState() => _MyFormState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _MyFormState extends State<MyForm> {
+class _LoginScreenState extends State<LoginScreen> {
 
 
   final _emailFocusNode = FocusNode();
@@ -23,13 +23,13 @@ class _MyFormState extends State<MyForm> {
     super.initState();
     _emailFocusNode.addListener(() {
       if (!_emailFocusNode.hasFocus) {
-        context.read<MyFormBloc>().add(EmailUnfocused());
+        context.read<LoginBloc>().add(EmailUnfocused());
         FocusScope.of(context).requestFocus(_passwordFocusNode);
       }
     });
     _passwordFocusNode.addListener(() {
       if (!_passwordFocusNode.hasFocus) {
-        context.read<MyFormBloc>().add(PasswordUnfocused());
+        context.read<LoginBloc>().add(PasswordUnfocused());
       }
     });
   }
@@ -44,7 +44,7 @@ class _MyFormState extends State<MyForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocListener<MyFormBloc , MyFormState>(
+      body: BlocListener<LoginBloc , LoginStates>(
         listener: (context, state){
           if (state.status.isSuccess) {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
