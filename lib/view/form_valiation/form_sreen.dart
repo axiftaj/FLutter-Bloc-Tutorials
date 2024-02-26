@@ -1,9 +1,7 @@
 import 'package:bloc_tutorials/bloc/form_validation_bloc/my_form_bloc.dart';
-import 'package:bloc_tutorials/bloc/form_validation_bloc/my_form_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import '../../bloc/form_validation_bloc/my_form_events.dart';
 import 'widget/widgets.dart';
 
 
@@ -48,14 +46,14 @@ class _MyFormState extends State<MyForm> {
     return Scaffold(
       body: BlocListener<MyFormBloc , MyFormState>(
         listener: (context, state){
-          if (state.status.isSubmissionSuccess) {
+          if (state.status.isSuccess) {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
             showDialog<void>(
               context: context,
               builder: (_) => const SuccessDialog(),
             );
           }
-          if (state.status.isSubmissionInProgress) {
+          if (state.status.isInProgress) {
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
               ..showSnackBar(

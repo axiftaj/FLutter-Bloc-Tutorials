@@ -1,4 +1,5 @@
-import 'package:equatable/equatable.dart';
+part of 'my_form_bloc.dart';
+
 
 
 abstract class MyFormEvent extends Equatable {

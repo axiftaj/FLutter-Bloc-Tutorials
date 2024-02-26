@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../bloc/form_validation_bloc/my_form_bloc.dart';
-import '../../../bloc/form_validation_bloc/my_form_events.dart';
-import '../../../bloc/form_validation_bloc/my_form_states.dart';
 
 class PasswordInput extends StatelessWidget {
   const PasswordInput({super.key, required this.focusNode});
@@ -23,7 +21,7 @@ class PasswordInput extends StatelessWidget {
             helperMaxLines: 2,
             labelText: 'Password',
             errorMaxLines: 2,
-            errorText: state.password.invalid
+            errorText: state.password.displayError != null
                 ? '''Password must be at least 8 characters and contain at least one letter and number'''
                 : null,
           ),
