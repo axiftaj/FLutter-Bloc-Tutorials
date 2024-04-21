@@ -1,13 +1,12 @@
-
 import 'package:bloc_tutorials/view/counter/counter_screen.dart';
 import 'package:bloc_tutorials/view/favourite/favourite_screen.dart';
 import 'package:bloc_tutorials/view/image_picker/image_picker_screen.dart';
-import 'package:bloc_tutorials/view/login/login_sreen.dart';
 import 'package:bloc_tutorials/view/todo/post_screen.dart';
 import 'package:bloc_tutorials/view/todo/to_do_screen/to_do_screen.dart';
 import 'package:flutter/material.dart';
-import '../switch_button /switch_widget.dart';
 
+import '../login/login_screen.dart';
+import '../switch_button /switch_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -30,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Card(
                 child: ListTile(
-                  onTap: (){
+                  onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const CounterScreen()));
                   },
                   title: const Text('Counter App'),
@@ -39,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Card(
                 child: ListTile(
-                  onTap: (){
+                  onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => SwitchWidget()));
                   },
                   title: const Text('Some Bloc Example'),
@@ -48,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Card(
                 child: ListTile(
-                  onTap: (){
+                  onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => FavouriteScreen()));
                   },
                   title: const Text('Favourite App'),
@@ -57,27 +56,25 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Card(
                 child: ListTile(
-                  onTap: (){
+                  onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => ImagePickerScreen()));
                   },
                   title: const Text('Image Picker Example'),
                   subtitle: const Text('Pick Image from gallery or capture image with camera'),
-
                 ),
               ),
               Card(
                 child: ListTile(
-                  onTap: (){
+                  onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const ToDoScreen()));
                   },
                   title: const Text('To Do App'),
                   subtitle: const Text('CRUD operations on list'),
-
                 ),
               ),
               Card(
                 child: ListTile(
-                  onTap: (){
+                  onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
                   },
                   title: const Text('Login'),
@@ -86,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Card(
                 child: ListTile(
-                  onTap: (){
+                  onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const PostScreen()));
                   },
                   title: const Text('Get Post Api with bloc'),
