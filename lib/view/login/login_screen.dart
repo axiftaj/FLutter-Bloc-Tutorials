@@ -122,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       builder: (context, state) {
                         return ElevatedButton(
                             onPressed: () {
-                              if (_formkey.currentState!.validate()) {
+                              if (_formKey.currentState!.validate()) {
                                 context.read<LoginBloc>().add(LoginApi());
                               }
                             },
