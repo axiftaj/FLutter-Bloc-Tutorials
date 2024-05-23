@@ -12,6 +12,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   late LoginBloc _loginBlocs;
+
   final emailFocusNode = FocusNode();
   final passwordFocusNode = FocusNode();
 
@@ -43,82 +44,75 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.all(20),
           child: Form(
             key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                BlocBuilder<LoginBloc, LoginState>(
-                    buildWhen: (current, previous) => current.email != previous.email,
-                    builder: (context, state) {
-                      return TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        focusNode: emailFocusNode,
-                        decoration: const InputDecoration(hintText: 'Email', border: OutlineInputBorder()),
-                        onChanged: (value) {
-                          context.read<LoginBloc>().add(EmailChanged(email: value));
-                        },
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Enter email';
-                          }
-                          return null;
-                        },
-                        onFieldSubmitted: (value) {},
-                      );
-                    }),
-                const SizedBox(
-                  height: 20,
-                ),
-                BlocBuilder<LoginBloc, LoginState>(
-                    buildWhen: (current, previous) => current.password != previous.password,
-                    builder: (context, state) {
-                      return TextFormField(
-                        keyboardType: TextInputType.text,
-                        focusNode: passwordFocusNode,
-                        decoration: const InputDecoration(hintText: 'Password', border: OutlineInputBorder()),
-                        onChanged: (value) {
-                          context.read<LoginBloc>().add(PasswordChanged(password: value));
-                        },
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Enter password';
-                          }
-                          return null;
-                        },
-                        onFieldSubmitted: (value) {},
-                      );
-                    }),
-                const SizedBox(
-                  height: 50,
-                ),
-                BlocListener<LoginBloc, LoginState>(
-                  listener: (context, state) {
-                    if (state.loginStatus == LoginStatus.error) {
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(
-                          SnackBar(content: Text(state.message.toString())),
-                        );
-                    }
+            child: BlocListener<LoginBloc, LoginState>(
+              listenWhen: (previous, current) => current.loginStatus != previous.loginStatus,
+              listener: (context, state) {
+                if (state.loginStatus == LoginStatus.error) {
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      SnackBar(content: Text(state.message.toString())),
+                    );
+                }
 
-                    if (state.loginStatus == LoginStatus.loading) {
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(
-                          const SnackBar(content: Text('submitting')),
+                if (state.loginStatus == LoginStatus.success) {
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      const SnackBar(content: Text('Login successful')),
+                    );
+                }
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  BlocBuilder<LoginBloc, LoginState>(
+                      buildWhen: (current, previous) => current.email != previous.email,
+                      builder: (context, state) {
+                        return TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          focusNode: emailFocusNode,
+                          decoration: const InputDecoration(hintText: 'Email', border: OutlineInputBorder()),
+                          onChanged: (value) {
+                            context.read<LoginBloc>().add(EmailChanged(email: value));
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter email';
+                            }
+                            return null;
+                          },
+                          onFieldSubmitted: (value) {},
                         );
-                    }
-
-                    if (state.loginStatus == LoginStatus.success) {
-                      ScaffoldMessenger.of(context)
-                        ..hideCurrentSnackBar()
-                        ..showSnackBar(
-                          const SnackBar(content: Text('Login successfull')),
+                      }),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  BlocBuilder<LoginBloc, LoginState>(
+                      buildWhen: (current, previous) => current.password != previous.password,
+                      builder: (context, state) {
+                        return TextFormField(
+                          keyboardType: TextInputType.text,
+                          focusNode: passwordFocusNode,
+                          decoration: const InputDecoration(hintText: 'Password', border: OutlineInputBorder()),
+                          onChanged: (value) {
+                            context.read<LoginBloc>().add(PasswordChanged(password: value));
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter password';
+                            }
+                            return null;
+                          },
+                          onFieldSubmitted: (value) {},
                         );
-                    }
-                  },
-                  child: BlocBuilder<LoginBloc, LoginState>(
-                      buildWhen: (current, previous) => false,
+                      }),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  BlocBuilder<LoginBloc, LoginState>(
+                      buildWhen: (current, previous) => current.loginStatus != previous.loginStatus,
                       builder: (context, state) {
                         return ElevatedButton(
                             onPressed: () {
@@ -126,10 +120,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 context.read<LoginBloc>().add(LoginApi());
                               }
                             },
-                            child: const Text('Login'));
-                      }),
-                )
-              ],
+                            child: state.loginStatus == LoginStatus.loading ? CircularProgressIndicator() : const Text('Login'));
+                      })
+                ],
+              ),
             ),
           ),
         ),

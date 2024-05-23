@@ -1,12 +1,12 @@
 import 'package:bloc_tutorials/view/counter/counter_screen.dart';
-import 'package:bloc_tutorials/view/favourite/favourite_screen.dart';
-import 'package:bloc_tutorials/view/image_picker/image_picker_screen.dart';
-import 'package:bloc_tutorials/view/todo/post_screen.dart';
-import 'package:bloc_tutorials/view/todo/to_do_screen/to_do_screen.dart';
+import 'package:bloc_tutorials/view/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../login/login_screen.dart';
+import '../favourite/favourite_screen.dart';
+import '../image_picker/image_picker_screen.dart';
 import '../switch_button /switch_widget.dart';
+import '../todo/post_screen.dart';
+import '../todo/to_do_screen/to_do_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
